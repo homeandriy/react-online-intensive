@@ -8,8 +8,7 @@ import { Consumer } from 'components/HOC/withProfile';
 import Styles from './styles.m.css';
 
 export default class StatusBar extends Component {
-    render () {
-        
+    render () {        
         return  (
                 <Consumer>
                     {( context ) => {
