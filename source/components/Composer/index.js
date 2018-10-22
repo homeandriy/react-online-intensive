@@ -1,17 +1,19 @@
 import React, { Component } from 'react';
-import moment from 'moment';
+
 
 import avatar from 'theme/assets/lisa';
+import Styles from './styles.m.css';
 
-export default class Post extends Component {
+export default class Composer extends Component {
     render () {
         return (
-            <section>              
-                <img src = { avatar } />
-                <a>Lisa Simpson </a>
-                <time>{moment().format('MMMM D h:mm:ss a')}</time>
-                <p>Howdy</p>
-            </section>  
+            <section className= { Styles.composer }>
+                <img src= { avatar } />
+                <form>
+                    <textarea placeholder = { `What's on your mind, Lisa?` } />
+                    <input type='submit' value='Post' />   
+                </form>
+            </section>
         );
     }
 }
