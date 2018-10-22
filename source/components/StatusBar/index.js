@@ -11,7 +11,7 @@ export default class StatusBar extends Component {
     render () {        
         return  (
                 <Consumer>
-                    {( context ) => {
+                    {( context ) => (
                         <section className= { Styles.statusBar }>
                             <button>
                                 <img  src={ context.avatar } />
@@ -20,7 +20,7 @@ export default class StatusBar extends Component {
                                 <span>{` ${ context.currentUserLastName } `}</span>
                             </button>
                         </section>
-                    }}                    
+                    )}                    
                 </Consumer>
         );
     }
