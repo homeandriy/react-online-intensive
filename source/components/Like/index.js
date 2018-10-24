@@ -4,8 +4,10 @@ import { func, string, arrayOf, shape } from 'prop-types';
 import cx from 'classnames';
 
 //Insruments
+import { withProfile } from 'components/HOC/withProfile';
 import Styles from './styles.m.css';
 
+@withProfile
 export default class Like extends Component {
     
     static propTypes = {

@@ -3,10 +3,10 @@ import React, { Component } from 'react';
 import propTypes from 'prop-types';
 
 //Instruments
-import { Consumer } from 'components/HOC/withProfile';
+import { withProfile } from 'components/HOC/withProfile';
 import Styles from './styles.m.css';
 
-export default class Composer extends Component {
+class Composer extends Component {
     static propTypes = {
         _createPost: propTypes.func.isRequired,
     };
@@ -52,15 +52,13 @@ export default class Composer extends Component {
 
     render () {
         const { comment } = this.state;
-        
-        return (
-            <Consumer>
-                {(context)=>(
-                    <section className= { Styles.composer }>
-                    <img src= { context.avatar } />
+        const { avatar , currentUserFirstName} = this.props;
+        return (            
+                <section className= { Styles.composer }>
+                    <img src= { avatar } />
                     <form onSubmit = { this._handleFormSubmit }>
                         <textarea 
-                            placeholder = { `What's on your mind, ${ context.currentUserFirstName }?` }
+                            placeholder = { `What's on your mind, ${ currentUserFirstName }?` }
                             value = { comment }
                             onChange = { this._updateComment }
                             onKeyPress = { this._submitOnEnter }
@@ -68,9 +66,8 @@ export default class Composer extends Component {
                         <input type='submit' value='Post' />   
                     </form>
                 </section>
-                )}
-            </Consumer>
-            
         );
     }
 }
+
+export default withProfile(Composer);

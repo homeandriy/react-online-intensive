@@ -4,12 +4,13 @@ import moment from 'moment';
 import { func, string, number, array } from 'prop-types';
 
 //Components
-import { Consumer } from 'components/HOC/withProfile';
+import { withProfile } from 'components/HOC/withProfile';
 import Like from 'components/Like';
 
 //Insruments
 import Styles from './styles.m.css';
 
+@withProfile
 export default class Post extends Component {
     static propTypes = {
         _likePost: func.isRequired,
@@ -43,7 +44,6 @@ export default class Post extends Component {
                             _likePost = { _likePost }
                             id={ id }
                             likes = { likes }
-                            { ...context }
                         />
                 </section>
                 )}
