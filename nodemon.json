@@ -1,6 +1,6 @@
 {
     "restartable": "rs",
-    "delay": "2500",
+    "delay": 2500,
     "ignore": ["./node_modules", ".git"],
     "verbose": false,
     "watch": ["./webpack", "package.json", ".babelrc"],
