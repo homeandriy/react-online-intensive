@@ -1,9 +1,11 @@
+// webpack/configurations/common.js
+
 // Core
 import getRepositoryName from 'git-repo-name';
 import chalk from 'chalk';
 
 // Paths
-import { source, build } from '../paths';
+import { source, build } from '../paths.js';
 
 // Webpack modules
 import {
@@ -14,10 +16,10 @@ import {
     setupContextReplacement,
     setupStyledReporting,
     initializeEnvVariables
-} from '../modules';
+} from '../modules/index.js';
 
 // Instruments
-import merge from 'webpack-merge';
+import { merge } from 'webpack-merge';
 
 export const generateCommonConfiguration = () => {
     const BUILD_ENV = process.env.BUILD_ENV;
@@ -65,8 +67,24 @@ export const generateCommonConfiguration = () => {
                 extensions: ['.mjs', '.js', '.json', '.css', '.m.css', '.png', '.jpg'],
                 modules:    [source, 'node_modules'],
             },
+            performance: {
+                hints: false
+            },
             optimization: {
                 nodeEnv: process.env.NODE_ENV,
+                // Додаємо розділення коду на чанки:
+                splitChunks: {
+                    chunks: 'all',       // розділяти всі типи чанків (sync + async)
+                    cacheGroups: {
+                        // Виносимо всі залежності з node_modules у vendors-чанк
+                        vendors: {
+                            test: /[\\/]node_modules[\\/]/,
+                            name: 'vendors',
+                            chunks: 'all',
+                        },
+                        // Додаткові правила можна додати за потреби
+                    },
+                },
             },
         }
     );

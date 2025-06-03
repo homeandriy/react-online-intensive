@@ -3,11 +3,11 @@ import React, { Component } from 'react';
 import moment from 'moment';
 
 //Components
-import { withProfile } from 'components/HOC/withProfile';
-import StatusBar from 'components/StatusBar';
-import Composer from 'components/Composer';
-import Post from 'components/Post';
-import Spinner from 'components/Spinner';
+import { withProfile } from './../HOC/withProfile.js';
+import StatusBar from './../StatusBar/index.js';
+import Composer from './../Composer/index.js';
+import Post from './../Post/index.js';
+import Spinner from './../Spinner/index.js';
 
 // instruments
 import Styles from './styles.m.css';
@@ -111,4 +111,4 @@ export default class Feed extends Component {
             </section>  
         );
     }
-} 
+}

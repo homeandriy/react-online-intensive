@@ -1,19 +1,31 @@
+// webpack/modules/utils.js
+
 // Paths
-import { build } from '../paths';
+import { build } from '../paths.js';
 
 // Plugins
-import CleanWebpackPlugin from 'clean-webpack-plugin';
-import { DefinePlugin, ContextReplacementPlugin } from 'webpack';
-import { HotModuleReplacementPlugin } from 'webpack';
+import { CleanWebpackPlugin } from 'clean-webpack-plugin'; // ← іменований імпорт
+import webpack from 'webpack';
 import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
-import StylishReporter from 'webpack-stylish';
+
+// Деструктуруємо класи з об'єкта 'webpack'
+const {
+    DefinePlugin,
+    ContextReplacementPlugin,
+    HotModuleReplacementPlugin
+} = webpack;
 
 export const initializeEnvVariables = (variables) => ({
     plugins: [new DefinePlugin(variables)],
 });
 
 export const setupContextReplacement = () => ({
-    plugins: [new ContextReplacementPlugin(/moment\/locale$/, /ru/)],
+    plugins: [
+        new webpack.ContextReplacementPlugin(
+            /moment[\/\\]locale$/,
+            /en|uk/ // залишаємо лише англійську та українську локалі
+        ),
+    ],
 });
 
 export const setupHotModuleReplacement = () => ({
@@ -33,13 +45,14 @@ export const setupBuildAnalysis = () => ({
 
 export const cleanBuildDirectory = () => ({
     plugins: [
-        new CleanWebpackPlugin(build, {
-            allowExternal: true,
+        new CleanWebpackPlugin({
+            cleanOnceBeforeBuildPatterns: [build],
+            dangerouslyAllowCleanPatternsOutsideProject: true
         })
     ],
 });
 
 export const setupStyledReporting = () => ({
-    stats:   'none',
-    plugins: [new StylishReporter()],
+    stats:   'errors-only',
+    plugins: [],
 });

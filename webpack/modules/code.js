@@ -1,5 +1,5 @@
 // Paths
-import { source } from '../paths';
+import { source } from '../paths.js';
 
 export const loadJavaScript = () => ({
     module: {

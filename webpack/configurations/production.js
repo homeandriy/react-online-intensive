@@ -1,5 +1,5 @@
 // Configurations
-import { generateCommonConfiguration } from './common';
+import { generateCommonConfiguration } from './common.js';
 
 // Webpack modules
 import {
@@ -7,10 +7,10 @@ import {
     setupBuildAnalysis,
     setupFavicon,
     cleanBuildDirectory
-} from '../modules';
+} from '../modules/index.js';
 
 // Instruments
-import merge from 'webpack-merge';
+import {merge} from 'webpack-merge';
 
 export const generateProductionConfiguration = () =>
     merge(

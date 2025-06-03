@@ -1,2 +1,2 @@
-export * from './development';
-export * from './production';
+export * from './development.js';
+export * from './production.js';

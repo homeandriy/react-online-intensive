@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 
 //Components
-import { withProfile } from 'components/HOC/withProfile';
+import { withProfile } from './../HOC/withProfile.js';
 
 //Instruments
 import Styles from './styles.m.css';

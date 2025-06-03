@@ -50,10 +50,6 @@
         font-weight: 300;
         resize: none;
 
-        &::scrollbar {
-            display: none;
-        }
-
         &::placeholder {
             transition: color .4s ease-out;
             color: var(--paletteColor5);

@@ -2,7 +2,7 @@
 import {
     generateDevelopmentConfiguration,
     generateProductionConfiguration
-} from './configurations';
+} from './configurations/index.js';
 
 // Instruments
 import openBrowser from 'react-dev-utils/openBrowser';

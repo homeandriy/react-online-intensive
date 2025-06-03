@@ -1,8 +1,8 @@
 // Presets
-import { generateCommonConfiguration } from './common';
+import { generateCommonConfiguration } from './common.js';
 
 // Webpack modules
-import { loadDevelopmentCss, setupHotModuleReplacement } from '../modules';
+import { loadDevelopmentCss, setupHotModuleReplacement } from '../modules/index.js';
 
 // Instruments
 import merge from 'webpack-merge';

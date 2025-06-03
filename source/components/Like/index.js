@@ -4,7 +4,7 @@ import { func, string, arrayOf, shape } from 'prop-types';
 import cx from 'classnames';
 
 //Insruments
-import { withProfile } from 'components/HOC/withProfile';
+import { withProfile } from './../HOC/withProfile.js';
 import Styles from './styles.m.css';
 
 @withProfile

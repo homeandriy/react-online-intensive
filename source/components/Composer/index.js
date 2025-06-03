@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import propTypes from 'prop-types';
 
 //Instruments
-import { withProfile } from 'components/HOC/withProfile';
+import { withProfile } from './../HOC/withProfile.js';
 import Styles from './styles.m.css';
 
 class Composer extends Component {

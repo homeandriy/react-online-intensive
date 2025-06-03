@@ -4,8 +4,8 @@ import moment from 'moment';
 import { func, string, number, array } from 'prop-types';
 
 //Components
-import { withProfile } from 'components/HOC/withProfile';
-import Like from 'components/Like';
+import { withProfile } from './../HOC/withProfile.js';
+import Like from './../Like/index.js';
 
 //Insruments
 import Styles from './styles.m.css';
@@ -38,7 +38,7 @@ export default class Post extends Component {
             currentUserLastName 
         } = this.props;
         
-        throw new Error();
+        // throw new Error();
 
         return ( 
             <section className= { Styles.post }>

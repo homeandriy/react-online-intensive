@@ -1,10 +1,19 @@
+// webpack/modules/assets.js
+
+// ESM-аналоги __dirname і __filename
+import { dirname, resolve as resolvePath } from 'path';
+import { fileURLToPath } from 'url';
+
+// Обчислюємо __dirname у ESM
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
 // Paths
-import { source, statics } from '../paths';
+import { source, statics } from '../paths.js';
 
 // Plugins
 import FaviconsWebpackPlugin from 'favicons-webpack-plugin';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
-import HtmlWebpackTemplate from 'html-webpack-template';
 
 export const loadFonts = () => ({
     module: {
@@ -56,17 +65,10 @@ export const setupFavicon = () => ({
 export const setupHtml = () => ({
     plugins: [
         new HtmlWebpackPlugin({
-            inject:   false,
-            template: HtmlWebpackTemplate,
-            title:    'Интенсив по React',
+            inject:   true,
+            // використовуємо ESM-аналоги для __dirname
+            template: resolvePath(__dirname, '../../public/index.html'),
             favicon:  `${statics}/favicon/Lectrum-favicon-512x512.png`,
-            meta:     [
-                {
-                    name:    'viewport',
-                    content: 'user-scalable=no, width=device-width, initial-scale=1',
-                }
-            ],
-            appMountIds: ['app', 'spinner'],
         })
     ],
 });
