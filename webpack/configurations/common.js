@@ -1,8 +1,8 @@
 // webpack/configurations/common.js
 
 // Core
-import getRepositoryName from 'git-repo-name';
 import chalk from 'chalk';
+import { execSync } from 'node:child_process';
 
 // Paths
 import { source, build } from '../paths.js';
@@ -27,7 +27,13 @@ export const generateCommonConfiguration = () => {
     let REPOSITORY_NAME = '';
 
     try {
-        REPOSITORY_NAME = getRepositoryName.sync();
+        const remoteUrl = execSync('git config --get remote.origin.url', {
+            encoding: 'utf8',
+            stdio: ['ignore', 'pipe', 'ignore'],
+        }).trim();
+        const [, repositoryName = ''] = remoteUrl.match(/([^/]+?)(?:\.git)?$/) || [];
+
+        REPOSITORY_NAME = repositoryName;
     } catch (error) {
         console.log(
             chalk.whiteBright.bgRed.bold(`
